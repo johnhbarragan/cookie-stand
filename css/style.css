@@ -1,2 +1,22 @@
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+
+table {
+    background-color: lightgrey;
+    margin: 50px;
+    border-style: solid;
+    padding: 1em;
+    
+}
+
+th {
+    padding 5px;
+    text-decoration: underline;
+}
+
+td {
+   align-content: center; 
+}
