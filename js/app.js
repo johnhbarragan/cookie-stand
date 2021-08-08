@@ -109,27 +109,6 @@ function CookieStore (city, min, max, avg) {
     }
   }
 
-  function renderNewActualTable(){
-      let lastShop = CookieStore.prototype.shopArray.length - 1;
-      let actualShop = CookieStore.prototype.shopArray[lastShop];
-      const shopTableElem = document.createElement('tr');
-      newTableCookies.appendChild(shopTableElem);
-
-      const shopCellElem = document.createElement('th');
-      shopCellElem.textContent = actualShop.city;
-      shopTableElem.appendChild(shopCellElem);
-
-
-      for (let j =0; j < actualShop.cookiesPerHour.length; j++){
-        const shopCellElem2 = document.createElement('td');
-        shopCellElem2.textContent = `${actualShop.cookiesPerHour[j]}`;
-        shopTableElem.appendChild(shopCellElem2);
-      }
-      const shopCellElem3 = document.createElement('td');
-      shopCellElem3.textContent = 'Total Store Cookies: ' + actualShop.cookiesTotal;
-      shopTableElem.appendChild(shopCellElem3);
-    }
-
 function renderFooterTable(){
   const footerElem = document.createElement('tfoot');
   newTableCookies. appendChild(footerElem);
@@ -164,7 +143,7 @@ function renderFooterTable(){
   renderActualTable();
   renderFooterTable();
 
-  
+  // Add New Store: 
   let myForm = document.getElementById('form');
 
   function handleSubmit(event) {
@@ -174,16 +153,30 @@ function renderFooterTable(){
     let maxCust = +event.target.maxCust.value;
     let avgCust = +event.target.avgCust.value;
 
-    let newStore = new CookieStore(
+    new CookieStore(
       newLocation,
       newMinCust,
       maxCust,
       avgCust
     );
-    renderNewActualTable();
-    console.log(typeof(newMinCust), (maxCust), avgCust);
-  }
   
+    newTableCookies.innerHTML = '';
+    renderNewHeader();
+    renderActualTable();
+    renderFooterTable();
+
+
+  //   clearAllForm();
+
+  //   function clearAllForm(){
+  //   event.target.newLocation.value = null;
+  //   event.target.newMinCust.value = null;
+  //   event.target.maxCust.value = null;
+  //   event.target.avgCust.value = null;
+  // }
+}
+
 
   myForm.addEventListener('submit', handleSubmit);
 
+ 
